@@ -49,7 +49,25 @@ public class Parque implements IParque{
 	//
 	public void salirDelParque(String puerta) {
 		
+		// Si no hay entradas por esa puerta, inicializamos
+		if (contadoresPersonasPuerta.get(puerta) == null){
+			contadoresPersonasPuerta.put(puerta, 0);
+		}
 		
+		// Precondiciones - TODO
+		comprobarAntesDeSalir();	
+		
+		// Aumentamos el contador total y el individual
+		contadorPersonasTotales--;		
+		contadoresPersonasPuerta.put(puerta, contadoresSalidaPuerta.get(puerta)+1);
+		
+		// Imprimimos el estado del parque
+		imprimirInfo(puerta, "Salida");
+		
+		// Postcondiciones - TODO
+		
+		
+		// Invariante - TODO
 	}
 	
 	private void imprimirInfo (String puerta, String movimiento){
@@ -81,8 +99,8 @@ public class Parque implements IParque{
 	protected void comprobarAntesDeEntrar(){	// TODO
 		
 		while(contadorPersonasTotales == AFORO_MAX ){ 
-	           try {
-				wait(); 
+	        try {
+	        	wait(); 
 			} catch (InterruptedException e) {
 				Logger.getGlobal().log(Level.INFO, "Entrada interrumpida, superado el aforo maximo");
 				Logger.getGlobal().log(Level.INFO, e.toString());
@@ -91,7 +109,7 @@ public class Parque implements IParque{
 	}
 
 	protected void comprobarAntesDeSalir(){		// TODO
-		assert  contadorPersonasTotales > 0 : String.format("Error de precondiciones, no se puede salair si aún no hay visitantes(%d)", contadorPersonasTotales);
+		assert  contadorPersonasTotales > 0 : String.format("Error de precondiciones, no se puede salir si aún no hay visitantes(%d)", contadorPersonasTotales);
 	}
 
 
