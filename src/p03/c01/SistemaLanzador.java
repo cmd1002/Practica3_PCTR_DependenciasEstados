@@ -17,10 +17,11 @@ public class SistemaLanzador {
 			new Thread (entradas).start();
 			
 			// Creación de hilos de salida
-			
+			ActividadSalidaPuerta salidas = new ActividadSalidaPuerta(puerta, parque);
+			new Thread (salidas).start();
 			
 			// 
-			// TODO
+			// TODO - Revisar si hace falta meter algo
 			//
 		}
 	}	

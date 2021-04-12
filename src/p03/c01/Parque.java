@@ -56,7 +56,6 @@ public class Parque implements IParque{
 		comprobarAntesDeSalir();	
 		
 		// Aumentamos el contador total y el individual
-		contadorPersonasTotales--;		
 		contadoresPersonasPuerta.put(puerta, contadoresSalidaPuerta.get(puerta)+1);
 		
 		// Imprimimos el estado del parque
@@ -94,7 +93,7 @@ public class Parque implements IParque{
 		assert contadorPersonasTotales < AFORO_MAX : "INV: No es posible superar el aforo máximo"; // TODO - Confirmar
 	}
 
-	protected void comprobarAntesDeEntrar(){	// TODO
+	protected void comprobarAntesDeEntrar() {
 		
 		while(contadorPersonasTotales == AFORO_MAX ){ 
 	        try {
@@ -106,7 +105,7 @@ public class Parque implements IParque{
 	    }
 	}
 
-	protected void comprobarAntesDeSalir(){		// TODO
+	protected void comprobarAntesDeSalir(){	
 		while(contadorPersonasTotales == 0 ){ 
 	        try {
 	        	wait(); 

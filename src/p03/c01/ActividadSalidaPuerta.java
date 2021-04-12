@@ -5,7 +5,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class ActividadSalidaPuerta{
+public class ActividadSalidaPuerta implements Runnable{
 
 	private static final int NUMSALIDAS = 20;
 	private String puerta;
@@ -16,6 +16,7 @@ public class ActividadSalidaPuerta{
 		this.parque = parque;
 	}
 
+	@Override
 	public void run() {
 		for (int i = 0; i < NUMSALIDAS; i ++) {
 			try {
