@@ -6,6 +6,7 @@ import java.util.Hashtable;
 public class Parque implements IParque{
 
 	// DONE 
+	public static final int AFORO_MAX = 50;
 	private int contadorPersonasTotales;
 	private Hashtable<String, Integer> contadoresPersonasPuerta;
 	private Hashtable<String, Integer> contadoresSalidaPuerta;
@@ -16,11 +17,6 @@ public class Parque implements IParque{
 		contadoresPersonasPuerta = new Hashtable<String, Integer>();
 		contadoresSalidaPuerta = new Hashtable<String, Integer>();// DONE
 	}
-	
-	private void comprobarPrecondiciones() { //TODO
-		assert  contadorPersonasTotales>=0 : String.format("Error de precondiciones, no puedo haber una cantidad negativa de visitantes(%d)", contadorPersonasTotales);
-	}
-
 
 	@Override
 	public void entrarAlParque(String puerta){		// TODO
@@ -31,7 +27,7 @@ public class Parque implements IParque{
 		}
 		
 		// Precondiciones - TODO
-		comprobarPrecondiciones();		
+		comprobarAntesDeEntrar();	
 		
 		// Aumentamos el contador total y el individual
 		contadorPersonasTotales++;		
@@ -82,9 +78,8 @@ public class Parque implements IParque{
 	}
 
 	protected void comprobarAntesDeEntrar(){	// TODO
-		//
-		// TODO
-		//
+		assert  contadorPersonasTotales >= 0 : String.format("Error de precondiciones, no puedo haber una cantidad negativa de visitantes(%d)", contadorPersonasTotales);
+		assert  contadorPersonasTotales <= AFORO_MAX : String.format("Error de precondiciones, el aforo máximo ha sido alcanzado(%d)", contadorPersonasTotales);
 	}
 
 	protected void comprobarAntesDeSalir(){		// TODO
