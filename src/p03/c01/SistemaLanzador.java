@@ -19,10 +19,6 @@ public class SistemaLanzador {
 			// Creación de hilos de salida
 			ActividadSalidaPuerta salidas = new ActividadSalidaPuerta(puerta, parque);
 			new Thread (salidas).start();
-			
-			// 
-			// TODO - Revisar si hace falta meter algo
-			//
 		}
 	}	
 }

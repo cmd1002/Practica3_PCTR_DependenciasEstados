@@ -19,7 +19,7 @@ public class Parque implements IParque{
 	}
 
 	@Override
-	public synchronized void entrarAlParque(String puerta){		// TODO
+	public synchronized void entrarAlParque(String puerta){
 		
 		// Si no hay entradas por esa puerta, inicializamos
 		if (contadoresPersonasPuerta.get(puerta) == null){
@@ -42,22 +42,19 @@ public class Parque implements IParque{
 		notifyAll();
 	}
 	
-	// 
-	// TODO Método salirDelParque
-	//
 	public synchronized void salirDelParque(String puerta) {
 		
-		// Si no hay entradas por esa puerta, inicializamos
-		if (contadoresPersonasPuerta.get(puerta) == null){
-			contadoresPersonasPuerta.put(puerta, 0);
+		// Si no hay salidas por esa puerta, inicializamos
+		if (contadoresSalidaPuerta.get(puerta) == null){
+			contadoresSalidaPuerta.put(puerta, 0);
 		}
 		
 		// Precondiciones
 		comprobarAntesDeSalir();	
-		
+
 		// Aumentamos el contador total y el individual
 		contadorPersonasTotales--;
-		contadoresSalidaPuerta.put(puerta, contadoresSalidaPuerta.get(puerta)-1);
+		contadoresSalidaPuerta.put(puerta, contadoresSalidaPuerta.get(puerta)+1);
 		
 		// Imprimimos el estado del parque
 		imprimirInfo(puerta, "Salida");
@@ -98,7 +95,7 @@ public class Parque implements IParque{
 		
 		while(contadorPersonasTotales == AFORO_MAX ){ 
 	        try {
-	        	wait(); 
+	        	wait();
 			} catch (InterruptedException e) {
 				Logger.getGlobal().log(Level.INFO, "Entrada interrumpida, superado el aforo maximo");
 				Logger.getGlobal().log(Level.INFO, e.toString());
@@ -109,7 +106,7 @@ public class Parque implements IParque{
 	protected void comprobarAntesDeSalir(){	
 		while(contadorPersonasTotales == 0 ){ 
 	        try {
-	        	wait(); 
+	        	wait();
 			} catch (InterruptedException e) {
 				Logger.getGlobal().log(Level.INFO, "Salida interrumpida, parque vacío");
 				Logger.getGlobal().log(Level.INFO, e.toString());
