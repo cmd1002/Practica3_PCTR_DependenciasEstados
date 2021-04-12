@@ -7,18 +7,17 @@ import java.util.logging.Logger;
 
 public class ActividadSalidaPuerta{
 
-	private int personas;
+	private static final int NUMSALIDAS = 20;
 	private String puerta;
 	private IParque parque;
 
-	public ActividadSalidaPuerta(String puerta, IParque parque, int personas) {
+	public ActividadSalidaPuerta(String puerta, IParque parque) {
 		this.puerta = puerta;
 		this.parque = parque;
-		this.personas = personas;
 	}
 
 	public void run() {
-		for (int i = personas; i > 0; i --) {
+		for (int i = 0; i < NUMSALIDAS; i ++) {
 			try {
 				parque.entrarAlParque(puerta);
 				TimeUnit.MILLISECONDS.sleep(new Random().nextInt(5)*1000);
