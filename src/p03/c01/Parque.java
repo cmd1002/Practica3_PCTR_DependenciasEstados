@@ -2,6 +2,7 @@ package src.p03.c01;
 
 import java.util.Enumeration;
 import java.util.Hashtable;
+import java.util.logging.*;
 
 public class Parque implements IParque{
 
@@ -78,14 +79,19 @@ public class Parque implements IParque{
 	}
 
 	protected void comprobarAntesDeEntrar(){	// TODO
-		assert  contadorPersonasTotales >= 0 : String.format("Error de precondiciones, no puedo haber una cantidad negativa de visitantes(%d)", contadorPersonasTotales);
-		assert  contadorPersonasTotales <= AFORO_MAX : String.format("Error de precondiciones, el aforo máximo ha sido alcanzado(%d)", contadorPersonasTotales);
+		
+		while(contadorPersonasTotales == AFORO_MAX ){ 
+	           try {
+				wait(); 
+			} catch (InterruptedException e) {
+				Logger.getGlobal().log(Level.INFO, "Entrada interrumpida, superado el aforo maximo");
+				Logger.getGlobal().log(Level.INFO, e.toString());
+			}
+	    }
 	}
 
 	protected void comprobarAntesDeSalir(){		// TODO
-		//
-		// TODO
-		//
+		assert  contadorPersonasTotales > 0 : String.format("Error de precondiciones, no se puede salair si aún no hay visitantes(%d)", contadorPersonasTotales);
 	}
 
 
