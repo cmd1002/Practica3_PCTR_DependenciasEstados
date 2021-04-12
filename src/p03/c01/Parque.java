@@ -5,15 +5,20 @@ import java.util.Hashtable;
 
 public class Parque implements IParque{
 
-	// TODO 
+	// DONE 
 	private int contadorPersonasTotales;
 	private Hashtable<String, Integer> contadoresPersonasPuerta;
+	private Hashtable<String, Integer> contadoresSalidaPuerta;
 	
 	
 	public Parque() {	// TODO
 		contadorPersonasTotales = 0;
 		contadoresPersonasPuerta = new Hashtable<String, Integer>();
-		// TODO
+		contadoresSalidaPuerta = new Hashtable<String, Integer>();// DONE
+	}
+	
+	private void comprobarPrecondiciones() { //TODO
+		assert  contadorPersonasTotales>=0 : String.format("Error de precondiciones, no puedo haber una cantidad negativa de visitantes(%d)", contadorPersonasTotales);
 	}
 
 
@@ -25,8 +30,8 @@ public class Parque implements IParque{
 			contadoresPersonasPuerta.put(puerta, 0);
 		}
 		
-		// TODO
-				
+		// Precondiciones - TODO
+		comprobarPrecondiciones();		
 		
 		// Aumentamos el contador total y el individual
 		contadorPersonasTotales++;		
@@ -35,10 +40,10 @@ public class Parque implements IParque{
 		// Imprimimos el estado del parque
 		imprimirInfo(puerta, "Entrada");
 		
-		// TODO
+		// Postcondiciones - TODO
 		
 		
-		// TODO
+		// Invariante - TODO
 		
 	}
 	

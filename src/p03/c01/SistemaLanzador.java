@@ -10,17 +10,17 @@ public class SistemaLanzador {
 		
 		for (int i = 0; i < Integer.parseInt(args[0]); i++) {
 			
-			String puerta = ""+((char) (letra_puerta++));
+			String puerta = "" + ((char) (letra_puerta++));
 			
 			// Creación de hilos de entrada
 			ActividadEntradaPuerta entradas = new ActividadEntradaPuerta(puerta, parque);
 			new Thread (entradas).start();
 			
+			// Creación de hilos de salida.
+			
 			// 
 			// TODO
 			//
-			
-			
 		}
 	}	
 }
