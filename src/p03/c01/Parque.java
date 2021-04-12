@@ -6,17 +6,16 @@ import java.util.logging.*;
 
 public class Parque implements IParque{
 
-	// DONE 
 	public static final int AFORO_MAX = 50;
 	private int contadorPersonasTotales;
 	private Hashtable<String, Integer> contadoresPersonasPuerta;
 	private Hashtable<String, Integer> contadoresSalidaPuerta;
 	
 	
-	public Parque() {	// TODO
+	public Parque() {
 		contadorPersonasTotales = 0;
 		contadoresPersonasPuerta = new Hashtable<String, Integer>();
-		contadoresSalidaPuerta = new Hashtable<String, Integer>();// DONE
+		contadoresSalidaPuerta = new Hashtable<String, Integer>();
 	}
 
 	@Override
@@ -27,7 +26,7 @@ public class Parque implements IParque{
 			contadoresPersonasPuerta.put(puerta, 0);
 		}
 		
-		// Precondiciones - TODO
+		// Precondiciones
 		comprobarAntesDeEntrar();	
 		
 		// Aumentamos el contador total y el individual
@@ -37,11 +36,10 @@ public class Parque implements IParque{
 		// Imprimimos el estado del parque
 		imprimirInfo(puerta, "Entrada");
 		
-		// Postcondiciones - TODO
+		// Invariante
+		checkInvariante();
 		
-		
-		// Invariante - TODO
-		
+		notifyAll();
 	}
 	
 	// 
@@ -54,7 +52,7 @@ public class Parque implements IParque{
 			contadoresPersonasPuerta.put(puerta, 0);
 		}
 		
-		// Precondiciones - TODO
+		// Precondiciones
 		comprobarAntesDeSalir();	
 		
 		// Aumentamos el contador total y el individual
@@ -64,10 +62,10 @@ public class Parque implements IParque{
 		// Imprimimos el estado del parque
 		imprimirInfo(puerta, "Salida");
 		
-		// Postcondiciones - TODO
+		// Invariante
+		checkInvariante();
 		
-		
-		// Invariante - TODO
+		notifyAll();
 	}
 	
 	private void imprimirInfo (String puerta, String movimiento){
@@ -92,8 +90,8 @@ public class Parque implements IParque{
 	
 	protected void checkInvariante() {
 		assert sumarContadoresPuerta() == contadorPersonasTotales : "INV: La suma de contadores de las puertas debe ser igual al valor del contador del parte";
-		// TODO 
-		// TODO
+		assert contadorPersonasTotales > 0 : "INV: No es posible un aforo negativo"; // TODO - Confirmar
+		assert contadorPersonasTotales < AFORO_MAX : "INV: No es posible superar el aforo máximo"; // TODO - Confirmar
 	}
 
 	protected void comprobarAntesDeEntrar(){	// TODO
