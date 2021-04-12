@@ -109,7 +109,14 @@ public class Parque implements IParque{
 	}
 
 	protected void comprobarAntesDeSalir(){		// TODO
-		assert  contadorPersonasTotales > 0 : String.format("Error de precondiciones, no se puede salir si aún no hay visitantes(%d)", contadorPersonasTotales);
+		while(contadorPersonasTotales == 0 ){ 
+	        try {
+	        	wait(); 
+			} catch (InterruptedException e) {
+				Logger.getGlobal().log(Level.INFO, "Salida interrumpida, parque vacío");
+				Logger.getGlobal().log(Level.INFO, e.toString());
+			}
+	    }
 	}
 
 
