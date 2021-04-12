@@ -56,7 +56,8 @@ public class Parque implements IParque{
 		comprobarAntesDeSalir();	
 		
 		// Aumentamos el contador total y el individual
-		contadoresPersonasPuerta.put(puerta, contadoresSalidaPuerta.get(puerta)+1);
+		contadorPersonasTotales--;
+		contadoresSalidaPuerta.put(puerta, contadoresSalidaPuerta.get(puerta)-1);
 		
 		// Imprimimos el estado del parque
 		imprimirInfo(puerta, "Salida");
